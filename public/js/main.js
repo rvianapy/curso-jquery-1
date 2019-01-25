@@ -14,20 +14,54 @@ var tamanhoFrase = $("#tamanho-frase");
 tamanhoFrase.text(numPalavras);
 
 var campo = $(".campo-digitacao");
-campo.on("click", function() {
+campo.on("input", function() {
     
     // Pega o texto digitado no campo e salva em 'conteudo'
     var conteudo = campo.val();
+
+    /* Retira os espaços da string
+     * \s --> seleciona os espaços em branco
+     * + --> metachar que seleciona um ou mais
+     * g --> faz a busca global, ou seja em todo o texto
+     * '' --> substitui os espaços em branco por nenhum caracter 
+     */
+    var conteudoSemEspaco = conteudo.replace(/\s+/g,'');
+
     /* Conta a quantidade de palavras digitadas
      * por meio da função 'split()' usando como
      * delimitador um espaço em branco 'split(" ")'
+     * Em JavaScript as RegExp precisam ser declaradas
+     * entre duas "/", dessa forma, a expressão 
+     * para selecionar todo tipo de caractere exceto
+     *  espaços em branco é '\S'.
+     * A expressão completa fica assim: /\S+/
      */ 
-    var qtdPalavras = conteudo.split(" ").length;
-    console.log(qtdPalavras);
-
+    var qtdPalavras = conteudo.split(/\S+/).length - 1;
+    var qtdCaracteres = conteudoSemEspaco.length;
+    
     /* Substitui a tag com id 'contador-palavras'
      * com o conteúdo da variável 'qtdPalavras'
      */
     $("#contador-palavras").text(qtdPalavras);
+    $("#contador-caracteres").text(qtdCaracteres);
+});
+
+var tempoRestante = $("#tempo-digitacao").text();
+
+/* campo.on() --> a função executa cada vez que o 
+ * campo de texto for selecionado pelo usuário
+ * campo.one() --> a função executa uma vez apenas
+ */
+
+campo.one("focus", function() {
+    var cronometroID = setInterval(function() {
+        tempoRestante--;
+        console.log(tempoRestante);
+        $("#tempo-digitacao").text(tempoRestante);
+        if (tempoRestante < 1) {
+            campo.attr("disabled", true);
+            clearInterval(cronometroID);
+        }
+    },1000);
 });
 
