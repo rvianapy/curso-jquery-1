@@ -1,4 +1,5 @@
 var campo = $(".campo-digitacao");
+var tempoInicial = $("#tempo-digitacao").text();
 
 /* Um atalho para $(document).ready(function(){})
  * é $(function(){})
@@ -70,12 +71,14 @@ function inicializaCronometro() {
     * campo.one() --> a função executa uma vez apenas
     */
     campo.one("focus", function() {
+        $("#botao-reiniciar").attr("disabled",true);
         var cronometroID = setInterval(function() {
             tempoRestante--;
             $("#tempo-digitacao").text(tempoRestante);
             if (tempoRestante < 1) {
                 campo.attr("disabled", true);
                 clearInterval(cronometroID);
+                $("#botao-reiniciar").attr("disabled",false);
             }
         },1000);
     });
@@ -86,6 +89,6 @@ function reiniciaJogo() {
     campo.val("");
     $("#contador-palavras").text("0");
     $("#contador-caracteres").text("0");
-    $("#tempo-digitacao").text("5");
+    $("#tempo-digitacao").text(tempoInicial);
     inicializaCronometro();
 }
