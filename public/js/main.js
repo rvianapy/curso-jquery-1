@@ -1,10 +1,10 @@
 var campo = $(".campo-digitacao");
 var tempoInicial = $("#tempo-digitacao").text();
 
-/* Um atalho para $(document).ready(function(){})
- * é $(function(){})
- */
 $(function() {
+    /* Um atalho para $(document).ready(function(){})
+     * é $(function(){})
+     */
     atualizaTamanhoFrase();
     inicializaContadores();
     inicializaCronometro();
@@ -106,19 +106,6 @@ function inicializaMarcadores() {
             campo.removeClass("borda-verde");
         }
     });
-}
-
-function inserePlacar() {
-    var corpoTabela = $(".placar").find("tbody");
-    var usuario = "Rodrigo";
-    var numPalavras = $("#contador-palavras").text();
-
-    var linha = "<tr>" +
-                    "<td>" + usuario + "</td>" +
-                    "<td>" + numPalavras + "</td>" +
-                "</tr>";
-    
-    corpoTabela.prepend(linha);
 }
 
 function reiniciaJogo() {
