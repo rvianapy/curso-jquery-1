@@ -77,13 +77,19 @@ function inicializaCronometro() {
             tempoRestante--;
             $("#tempo-digitacao").text(tempoRestante);
             if (tempoRestante < 1) {
-                campo.attr("disabled", true);
                 clearInterval(cronometroID);
-                $("#botao-reiniciar").attr("disabled",false);
-                campo.toggleClass("campo-desativado");
+                //$("#botao-reiniciar").attr("disabled",false);
+                finalizaJogo();
+                
             }
         },1000);
     });
+}
+
+function finalizaJogo() {
+    campo.attr("disabled", true);
+    campo.toggleClass("campo-desativado");
+    inserePlacar();
 }
 
 function inicializaMarcadores() {
@@ -102,15 +108,28 @@ function inicializaMarcadores() {
     });
 }
 
-/* A ação de adicionar e remover classes é tão comum
- * que existe no jQuery uma função específica para isso:
- * 'toggleClass'. Funciona assim: se no momento que a
- * função for chamada, o elemento possuir a classe, ela
- * será removida. Mas se o elemento não possuir a classe,
- * ela será adicionada.
- * É utilizada no lugar de 'addClass' e 'removeClass'.
- */
+function inserePlacar() {
+    var corpoTabela = $(".placar").find("tbody");
+    var usuario = "Rodrigo";
+    var numPalavras = $("#contador-palavras").text();
+
+    var linha = "<tr>" +
+                    "<td>" + usuario + "</td>" +
+                    "<td>" + numPalavras + "</td>" +
+                "</tr>";
+    
+    corpoTabela.prepend(linha);
+}
+
 function reiniciaJogo() {
+    /* A ação de adicionar e remover classes é tão comum
+     * que existe no jQuery uma função específica para isso:
+     * 'toggleClass'. Funciona assim: se no momento que a
+     * função for chamada, o elemento possuir a classe, ela
+     * será removida. Mas se o elemento não possuir a classe,
+     * ela será adicionada.
+     * É utilizada no lugar de 'addClass' e 'removeClass'.
+     */
     campo.attr("disabled", false);
     campo.val("");
     $("#contador-palavras").text("0");
