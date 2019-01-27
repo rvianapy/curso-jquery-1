@@ -8,6 +8,7 @@ $(function() {
     atualizaTamanhoFrase();
     inicializaContadores();
     inicializaCronometro();
+    inicializaMarcadores();
     /* Como atalho para .on("click", function() {})
      * podemos usar .click(function() {})
      */
@@ -79,11 +80,36 @@ function inicializaCronometro() {
                 campo.attr("disabled", true);
                 clearInterval(cronometroID);
                 $("#botao-reiniciar").attr("disabled",false);
+                campo.toggleClass("campo-desativado");
             }
         },1000);
     });
 }
 
+function inicializaMarcadores() {
+    var frase = $(".frase").text();
+    campo.on("input", function() {
+        var digitado = campo.val();
+        var comparavel = frase.substr(0,digitado.length);
+        
+        if (digitado == comparavel) {
+            campo.addClass("borda-verde");
+            campo.removeClass("borda-vermelha");
+        }else {
+            campo.addClass("borda-vermelha");
+            campo.removeClass("borda-verde");
+        }
+    });
+}
+
+/* A ação de adicionar e remover classes é tão comum
+ * que existe no jQuery uma função específica para isso:
+ * 'toggleClass'. Funciona assim: se no momento que a
+ * função for chamada, o elemento possuir a classe, ela
+ * será removida. Mas se o elemento não possuir a classe,
+ * ela será adicionada.
+ * É utilizada no lugar de 'addClass' e 'removeClass'.
+ */
 function reiniciaJogo() {
     campo.attr("disabled", false);
     campo.val("");
@@ -91,4 +117,7 @@ function reiniciaJogo() {
     $("#contador-caracteres").text("0");
     $("#tempo-digitacao").text(tempoInicial);
     inicializaCronometro();
+    campo.toggleClass("campo-desativado");
+    campo.removeClass("borda-vermelha");
+    campo.removeClass("borda-verde");
 }

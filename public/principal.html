@@ -3,24 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Alura Typer</title>
+    <link rel="stylesheet" href="css/libs/materialize.min.css">
+    <link rel="stylesheet" href="css/libs/google-fonts.css">
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <!-- Seja bem vindo ao curso de jQuery :) -->
-    <h1>Alura Typer</h1>
-    <p class="frase">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sem mauris, viverra ut consectetur nec, consectetur imperdiet sem. Cras non felis eleifend, convallis lacus sit amet, posuere quam. Cras viverra, nibh tempus bibendum vestibulum, turpis felis gravida dui, eu scelerisque est diam nec diam. Praesent elementum, urna eget pulvinar congue, lectus metus ornare purus, nec luctus ligula tellus at dolor. Quisque libero purus, imperdiet sed aliquet at, euismod nec velit.</p>
+    <div class="container">
+        <h1 class="center">Alura Typer</h1>
+        <p class="frase center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et elementum ligula. Aenean malesuada diam sapien, sollicitudin accumsan mauris sodales sit amet. Ut non sapien ut ipsum elementum posuere eu commodo ipsum. Nulla dolor lectus, convallis ut magna ullamcorper, volutpat semper odio. Fusce quis dapibus dolor. Sed commodo faucibus tortor sed fermentum. In condimentum condimentum dui. </p>
 
-    <ul class="informacoes">
-        <li><span id="tamanho-frase">30</span> palavras</li>
-        <li><span id="tempo-digitacao">5</span> segundos</li>
-    </ul>
+        <ul class="informacoes center">
+            <li>
+                <i class="small material-icons icones">description</i>
+                <span id="tamanho-frase">30</span> palavras
+            </li>
+            <li>
+                <i class="small material-icons icones">query_builder</i>
+                <span id="tempo-digitacao">10</span> segundos
+            </li>
+        </ul>
 
-    <textarea class="campo-digitacao" rows="8" cols="40"></textarea>
-    <button id="botao-reiniciar">Reiniciar jogo</button>
+        <textarea class="campo-digitacao" rows="8" cols="40"></textarea>
+        <div class="botoes">
+            <a id="botao-reiniciar" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">restore</i></a>
+        </div>
 
-    <ul>
-        <li><span id="contador-caracteres">0</span> caracteres</li>
-        <li><span id="contador-palavras">0</span> palavras</li>
-    </ul>
+        <ul class="center">
+            <li><span id="contador-caracteres">0</span> caracteres</li>
+            <li><span id="contador-palavras">0</span> palavras</li>
+        </ul>
+    </div>
 
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
