@@ -8,6 +8,18 @@ function inserePlacar() {
     var botaoRemover = "<a href='#'><i class='small material-icons'>delete</i></a>";
     linha.find(".botao-remover").click(removeLinha);
     corpoTabela.prepend(linha);
+
+    $(".placar").slideDown(700);
+    scrollPlacar();
+}
+
+function scrollPlacar() {
+    var posicaoPlacar = $(".placar").offset().top;
+    $("body").animate(
+        {
+            scrollTop: posicaoPlacar + "px"
+        },1000);
+    
 }
 
 function novaLinha(usuario, palavras) {
@@ -37,5 +49,8 @@ function removeLinha() {
 }
 
 function mostraPlacar() {
-    $(".placar").slideToggle(600);
+    /* A função stop() é usada para terminar uma
+     * animação antes de começar a próxima
+     */
+    $(".placar").stop().slideToggle(600);
 }
