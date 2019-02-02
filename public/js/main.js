@@ -15,6 +15,11 @@ $(function() {
     $("#botao-reiniciar").click(reiniciaJogo);
 });
 
+function atualizaTempoInicial(tempo) {
+    tempoInicial = tempo;
+    $("#tempo-digitacao").text(tempo);
+}
+
 function atualizaTamanhoFrase() {
     /*  '$' é um atalho para a função seletora do jQuery, que leva
     *  o mesmo nome do framework.
@@ -65,13 +70,12 @@ function inicializaContadores() {
 }
 
 function inicializaCronometro() {
-    var tempoRestante = $("#tempo-digitacao").text();
-
     /* campo.on() --> a função executa cada vez que o 
     * campo de texto for selecionado pelo usuário
     * campo.one() --> a função executa uma vez apenas
     */
     campo.one("focus", function() {
+        var tempoRestante = $("#tempo-digitacao").text();
         $("#botao-reiniciar").attr("disabled",true);
         var cronometroID = setInterval(function() {
             tempoRestante--;
@@ -93,8 +97,8 @@ function finalizaJogo() {
 }
 
 function inicializaMarcadores() {
-    var frase = $(".frase").text();
     campo.on("input", function() {
+        var frase = $(".frase").text();
         var digitado = campo.val();
         var comparavel = frase.substr(0,digitado.length);
         

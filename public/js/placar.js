@@ -52,5 +52,5 @@ function mostraPlacar() {
     /* A função stop() é usada para terminar uma
      * animação antes de começar a próxima
      */
-    $(".placar").stop().slideToggle(600);
+    $(".placar").stop().slideToggle(700);
 }
